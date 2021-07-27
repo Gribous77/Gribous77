@@ -114,7 +114,7 @@ client.on('message', async msg => {
   }
 })
 
-client.login('ODYyMDM2MjUzMDAyOTU2ODIw.YOSf0g.tN7S5TmwBqFaaQMe7N822PT49M8')
+client.login(process.env.token)
 
 async function Play(msg) {
   msg.member.voice.channel.join().then(connection => {
