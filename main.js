@@ -1,6 +1,6 @@
 const Discord = require('discord.js')
 const client = new Discord.Client()
-const prefix = "^"
+const prefix = "$"
 const fs = require("fs")
 const ffmpeg = require('ffmpeg-static')
 const ytdl = require('ytdl-core')
@@ -16,7 +16,7 @@ client.on('ready', () => {
 })
 
 client.on('message', async msg => {
-  if (msg.content.startsWith("?play")) {
+  if (msg.content.startsWith(prefix + "play")) {
     const args = msg.content.split("?play ")
     if (msg.member.voice.channel) {
       if (args === undefined) {
@@ -64,19 +64,19 @@ client.on('message', async msg => {
       msg.channel.send(embed)
     }
   }
-  if (msg.content === "?disconnect") {
+  if (msg.content === prefix + "stop") {
     msg.channel.send(":wave: **Disconnected from** `" + msg.member.voice.channel.name + "`")
     setTimeout(function() {
       msg.member.voice.channel.leave()
     }, 100)
   }
-  if (msg.content === "?list") {
+  if (msg.content === prefix + "list") {
     msg.channel.send("**List: **")
     for (var i = 0;i < list2.length;i++) {
       msg.channel.send(i + " - "  + list2[i])
     }
   }
-  if (msg.content === "?listurl") {
+  if (msg.content === prefix + "listurl") {
     msg.channel.send("**List URL: **")
     for (var i = 0;i < list.length;i++) {
       msg.channel.send(i + " - `"  + list[i] + "`")
@@ -88,13 +88,13 @@ client.on('message', async msg => {
     list2.shift()
     Play(msg)
   }
-  if (msg.content === "?pause") {
+  if (msg.content === prefix + "pause") {
     Pause(msg)
   }
-  if (msg.content === "?resume") {
+  if (msg.content === prefix + "resume") {
     Resume(msg)
   }
-  if (msg.content.startsWith("?loop")) {
+  if (msg.content.startsWith(prefix + "loop")) {
     const args = msg.content.split(" ")
     if (args[1] === "on") {
       loop.shift()
